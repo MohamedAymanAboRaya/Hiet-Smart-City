@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City | H.I.E.T Electronics 2</title>
+    <!-- Tailwind CSS (Requires Internet) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons (Requires Internet) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['Outfit', 'sans-serif'],
+                },
+                extend: {
+                    colors: {
+                        primary: '#0B1120', 
+                        secondary: '#162032',
+                        accent: '#F5A623', 
+                        accentHover: '#E09612',
+                        highlight: '#F8FAFC',
+                        surface: 'rgba(255, 255, 255, 0.03)',
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B1120; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #F5A623; }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(245, 166, 35, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px -10px rgba(245, 166, 35, 0.15);
+        }
+
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #F5A623 0%, #FCD34D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .loader-bar {
+            height: 3px;
+            background: linear-gradient(90deg, #F5A623, #FCD34D);
+            width: 0%;
+            transition: width 0.1s;
+        }
+        
+        /* Tab utility */
+        .tab-content.hidden { display: none; }
+        .tab-content { display: grid; }
+    </style>
+</head>
+<body class="bg-primary text-slate-300 font-sans overflow-x-hidden selection:bg-accent selection:text-white">
+
+    <!-- Scroll Progress Bar -->
+    <div class="fixed top-0 left-0 w-full z-[60]">
+        <div id="progress-bar" class="loader-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 border-b border-transparent py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="relative w-12 h-12 flex items-center justify-center bg-white rounded-full border border-white/10 group-hover:border-accent/50 transition-colors overflow-hidden p-0.5">
+                    <!-- Institute LOGO -->
+                    <img src="https://i.postimg.cc/ph7hSjh7/images-(68).jpg" alt="H.I.E.T Logo" class="w-full h-full object-contain rounded-full">
+                </div>
+                <div class="leading-none">
+                    <span class="block font-bold text-white text-lg tracking-tight group-hover:text-accent transition-colors">H.I.E.T</span>
+                    <span class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold">Electronics Dept</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="text-white hover:text-accent transition-colors">Home</a>
+                <a href="#stats" class="text-slate-400 hover:text-white transition-colors">Impact</a>
+                <a href="#features" class="text-slate-400 hover:text-white transition-colors">System</a>
+                <a href="#team" class="text-slate-400 hover:text-white transition-colors">Team</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#gallery" class="hidden md:flex items-center gap-2 px-5 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-bold hover:bg-accent hover:text-primary transition-all duration-300">
+                    <span>View Gallery</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <button class="md:hidden text-2xl text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-secondary border-t border-white/10 p-6 flex flex-col gap-4 shadow-2xl">
+            <a href="#home" class="text-white font-bold" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+            <a href="#stats" class="text-slate-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Impact</a>
+            <a href="#features" class="text-slate-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">System</a>
+            <a href="#team" class="text-slate-400" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Team</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03]"></div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 animate-pulse-glow"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"></div>
+
+        <div class="container mx-auto px-6 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8 reveal active">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-bold uppercase tracking-wider">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                    </span>
+                    Electronics 2 Project
+                </div>
+                
+                <h1 class="text-5xl lg:text-7xl font-bold text-white leading-[1.1]">
+                    Smart Cities <br>
+                    <span class="text-gradient-gold">Redefined.</span>
+                </h1>
+                
+                <p class="text-lg text-slate-400 max-w-xl leading-relaxed">
+                    Experience the synergy of IoT and embedded systems. A fully autonomous city simulation managed by intelligent sensor networks and real-time data processing.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})" class="px-8 py-4 rounded-xl bg-accent text-primary font-bold shadow-lg shadow-accent/20 hover:shadow-accent/40 hover:-translate-y-1 transition-all duration-300">
+                        Explore Architecture
+                    </button>
+                    <button class="px-8 py-4 rounded-xl border border-white/10 bg-white/5 text-white font-bold hover:bg-white/10 transition-all backdrop-blur-sm flex items-center gap-3 group">
+                        <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-play text-xs"></i>
+                        </span>
+                        Watch Demo
+                    </button>
+                </div>
+                
+                <div class="flex items-center gap-6 pt-4 border-t border-white/5">
+                    <div class="flex -space-x-3">
+                        <!-- Mohamed Ragb (Leader) -->
+                        <img src="https://i.postimg.cc/1RGgx0vM/IMG-20251208-WA0001.jpg" class="w-10 h-10 rounded-full border-2 border-primary object-cover" title="Mohamed Ragb">
+                        <!-- Mohamed Sobhy (Organizer) -->
+                        <img src="https://i.postimg.cc/FzBX6pR6/Screenshot-20251206-171947-Linked-In.jpg" class="w-10 h-10 rounded-full border-2 border-primary object-cover" title="Mohamed Sobhy">
+                        <!-- Mohamed Abo Raya -->
+                        <img src="https://i.postimg.cc/GpYcmR0b/Screenshot-20251206-224306-Linked-In.jpg" class="w-10 h-10 rounded-full border-2 border-primary object-cover" title="Mohamed Abo Raya">
+                        <!-- Ziad Elazb -->
+                        <img src="https://i.postimg.cc/QdBzqzP3/img-1-1765045528625.jpg" class="w-10 h-10 rounded-full border-2 border-primary object-cover" title="Ziad Elazb">
+                        
+                        <div class="w-10 h-10 rounded-full border-2 border-primary bg-slate-700 flex items-center justify-center text-xs font-bold text-white">+6</div>
+                    </div>
+                    <p class="text-sm font-medium text-slate-400">Developed by <span class="text-white">Elite Squad</span></p>
+                </div>
+            </div>
+
+            <!-- Hero Visual -->
+            <div class="relative lg:h-[600px] flex items-center justify-center reveal delay-200">
+                <div class="relative w-full max-w-md aspect-[4/5] glass-card rounded-3xl p-2 animate-float z-20">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-accent/10 to-transparent rounded-3xl z-0"></div>
+                    <div class="w-full h-full rounded-2xl overflow-hidden relative z-10">
+                        <!-- Supervisor Image (Dr. Zewil) -->
+                        <img src="https://i.postimg.cc/tTGTSXwG/img-1-1765034257615.jpg" alt="Dr. Ibrahim Zewil" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="px-2 py-1 rounded bg-accent text-primary text-[10px] font-bold uppercase">Supervisor</span>
+                                <div class="flex gap-1">
+                                    <i class="fa-solid fa-star text-accent text-xs"></i>
+                                    <i class="fa-solid fa-star text-accent text-xs"></i>
+                                    <i class="fa-solid fa-star text-accent text-xs"></i>
+                                    <i class="fa-solid fa-star text-accent text-xs"></i>
+                                    <i class="fa-solid fa-star text-accent text-xs"></i>
+                                </div>
+                            </div>
+                            <h2 class="text-2xl font-bold text-white">Dr. Ibrahim Zewil</h2>
+                            <p class="text-sm text-slate-300 mt-1">Leading Innovation at H.I.E.T</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-12 border-y border-white/5 bg-white/[0.02]">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center reveal">
+                    <p class="text-4xl font-bold text-white mb-1 counter" data-target="15">0</p>
+                    <p class="text-sm text-accent uppercase tracking-widest font-semibold">Sensors Active</p>
+                </div>
+                <div class="text-center reveal delay-100">
+                    <p class="text-4xl font-bold text-white mb-1 counter" data-target="4">0</p>
+                    <p class="text-sm text-accent uppercase tracking-widest font-semibold">Subsystems</p>
+                </div>
+                <div class="text-center reveal delay-200">
+                    <p class="text-4xl font-bold text-white mb-1 counter" data-target="100">0</p>
+                    <p class="text-sm text-accent uppercase tracking-widest font-semibold">% Automation</p>
+                </div>
+                <div class="text-center reveal delay-300">
+                    <p class="text-4xl font-bold text-white mb-1 counter" data-target="1">0</p>
+                    <p class="text-sm text-accent uppercase tracking-widest font-semibold">Smart Dashboard</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Architecture Section -->
+    <section id="features" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-accent font-bold tracking-widest uppercase text-xs">System Architecture</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">How It Works</h2>
+                <p class="text-slate-400">Interact with the tabs below to explore the three layers of our smart city infrastructure.</p>
+            </div>
+
+            <!-- Tabs Container -->
+            <div class="glass-card rounded-3xl p-1 max-w-4xl mx-auto mb-10 flex flex-wrap relative z-10 reveal">
+                <button class="tab-btn flex-1 py-3 px-6 rounded-2xl text-sm font-bold text-white bg-white/10 transition-all text-center" onclick="openTab(event, 'inputs')">
+                    <i class="fa-solid fa-tower-broadcast mr-2"></i> Input Layer
+                </button>
+                <button class="tab-btn flex-1 py-3 px-6 rounded-2xl text-sm font-bold text-slate-400 hover:text-white transition-all text-center" onclick="openTab(event, 'processing')">
+                    <i class="fa-solid fa-microchip mr-2"></i> Logic Core
+                </button>
+                <button class="tab-btn flex-1 py-3 px-6 rounded-2xl text-sm font-bold text-slate-400 hover:text-white transition-all text-center" onclick="openTab(event, 'outputs')">
+                    <i class="fa-solid fa-satellite-dish mr-2"></i> Action Layer
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="max-w-5xl mx-auto min-h-[400px] reveal">
+                <!-- Inputs Content -->
+                <div id="inputs" class="tab-content grid md:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 flex-shrink-0">
+                                <i class="fa-solid fa-eye text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">IR Sensors</h3>
+                                <p class="text-slate-400 text-sm mt-1">Detects vehicle density for traffic lights.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-400 flex-shrink-0">
+                                <i class="fa-solid fa-sun text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">LDR Modules</h3>
+                                <p class="text-slate-400 text-sm mt-1">Monitors ambient light to toggle street lamps.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400 flex-shrink-0">
+                                <i class="fa-solid fa-trash text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Ultrasonic</h3>
+                                <p class="text-slate-400 text-sm mt-1">Measures waste levels in smart bins.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-dashed border-slate-700 flex items-center justify-center h-full bg-black/20">
+                        <i class="fa-solid fa-network-wired text-8xl text-slate-800"></i>
+                    </div>
+                </div>
+
+                <!-- Processing Content -->
+                <div id="processing" class="tab-content hidden grid md:grid-cols-2 gap-10 items-center">
+                    <div class="order-2 md:order-1 glass-card p-6 rounded-2xl border border-dashed border-slate-700 flex items-center justify-center h-full bg-black/20">
+                        <i class="fa-solid fa-microchip text-8xl text-accent/20"></i>
+                    </div>
+                    <div class="space-y-6 order-1 md:order-2">
+                        <h3 class="text-2xl font-bold text-white">The Brain: ESP32 & Arduino</h3>
+                        <p class="text-slate-400 leading-relaxed">
+                            Data collected from sensors is processed instantly. The microcontroller uses logic gates to determine actions—like switching a red light to green or sending a "Bin Full" alert to the cloud dashboard via Wi-Fi.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-sm text-slate-300">
+                                <i class="fa-solid fa-check text-accent"></i> Real-time decision making
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300">
+                                <i class="fa-solid fa-check text-accent"></i> Wi-Fi Connectivity for IoT
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300">
+                                <i class="fa-solid fa-check text-accent"></i> Low power consumption
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Outputs Content -->
+                <div id="outputs" class="tab-content hidden grid md:grid-cols-2 gap-10 items-center">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-white">Smart Actuation</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                <i class="fa-solid fa-traffic-light text-red-500 text-2xl mb-2"></i>
+                                <h4 class="font-bold text-white">Signals</h4>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                <i class="fa-solid fa-mobile-screen text-blue-400 text-2xl mb-2"></i>
+                                <h4 class="font-bold text-white">App Alert</h4>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                <i class="fa-solid fa-lightbulb text-yellow-200 text-2xl mb-2"></i>
+                                <h4 class="font-bold text-white">Lighting</h4>
+                            </div>
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                                <i class="fa-solid fa-gears text-slate-400 text-2xl mb-2"></i>
+                                <h4 class="font-bold text-white">Motors</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-dashed border-slate-700 flex items-center justify-center h-full bg-black/20">
+                        <i class="fa-solid fa-city text-8xl text-slate-800"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Hierarchy Section -->
+    <section id="team" class="py-24 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
+        
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <span class="text-accent font-bold tracking-widest uppercase text-xs">Who Built This</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Organization Chart</h2>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-1/2 top-0 bottom-0 w-px bg-slate-800 -translate-x-1/2 hidden lg:block"></div>
+
+                <!-- Supervisor -->
+                <div class="relative z-10 flex justify-center mb-16 reveal">
+                    <div class="glass-card p-1 rounded-full border-2 border-accent/50 shadow-[0_0_30px_rgba(245,166,35,0.2)]">
+                        <div class="w-32 h-32 rounded-full overflow-hidden bg-white relative group p-0.5">
+                             <!-- UPDATED Supervisor Image (Dr. Zewil) -->
+                            <img src="https://i.postimg.cc/tTGTSXwG/img-1-1765034257615.jpg" alt="Dr. Ibrahim Zewil" class="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap bg-secondary border border-accent/30 px-4 py-1 rounded-full text-white text-sm font-bold shadow-lg">
+                            Dr. Ibrahim Zewil
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leader & Organizer Container -->
+                <div class="relative z-10 flex flex-col md:flex-row justify-center gap-8 mb-16 reveal delay-100">
+                    
+                    <!-- Team Leader: Mohamed Ragb -->
+                    <div class="glass-card p-6 rounded-2xl text-center min-w-[280px] border-t-4 border-t-accent hover:border-t-white transition-colors group">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-slate-800 mb-4 overflow-hidden border-2 border-slate-700 group-hover:border-accent transition-colors">
+                            <img src="https://i.postimg.cc/1RGgx0vM/IMG-20251208-WA0001.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Mohamed Ragb</h3>
+                        <p class="text-accent text-xs font-bold uppercase mb-2">Team Leader</p>
+                        <p class="text-slate-400 text-xs">Pump & Power Supply</p>
+                    </div>
+
+                    <!-- Team Organizer: Mohamed Sobhy -->
+                    <div class="glass-card p-6 rounded-2xl text-center min-w-[280px] border-t-4 border-t-blue-500 hover:border-t-white transition-colors group">
+                        <div class="w-24 h-24 mx-auto rounded-full bg-slate-800 mb-4 overflow-hidden border-2 border-slate-700 group-hover:border-blue-500 transition-colors">
+                            <img src="https://i.postimg.cc/FzBX6pR6/Screenshot-20251206-171947-Linked-In.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-bold text-white">Mohamed Sobhy</h3>
+                        <p class="text-blue-400 text-xs font-bold uppercase mb-2">Team Organizer</p>
+                        <p class="text-slate-400 text-xs">Pump & Power Supply</p>
+                    </div>
+
+                </div>
+
+                <!-- Members Grid (8 Slots) -->
+                <div class="relative z-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 reveal delay-200 max-w-6xl mx-auto">
+                    
+                    <!-- Member 1: Mohamed Abo Raya -->
+                    <div class="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group relative overflow-hidden">
+                        <!-- Credit Badge -->
+                        <div class="absolute top-2 right-2 text-accent text-[10px] border border-accent/30 rounded px-1">Web Dev</div>
+                        <div class="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-white/10 group-hover:border-accent/50">
+                            <img src="https://i.postimg.cc/GpYcmR0b/Screenshot-20251206-224306-Linked-In.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Mohamed Abo Raya</h4>
+                            <p class="text-xs text-slate-500">Smart Parking</p>
+                            <p class="text-[10px] text-accent mt-1">Website Programmer</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member 2: Mahmoud Saad -->
+                    <div class="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group">
+                        <div class="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-white/10 group-hover:border-accent/50">
+                            <img src="https://i.postimg.cc/J4HtCrHx/IMG-20251206-WA0022.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Mahmoud Saad</h4>
+                            <p class="text-xs text-slate-500">Earthquake Alarm</p>
+                        </div>
+                    </div>
+
+                    <!-- Member 3: Awad Ali Shehata -->
+                    <div class="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group">
+                        <div class="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-white/10 group-hover:border-accent/50">
+                            <img src="https://i.postimg.cc/Rqr9wbxR/IMG-20251206-WA0025.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Awad Ali Shehata</h4>
+                            <p class="text-xs text-slate-500">Gas Station System</p>
+                        </div>
+                    </div>
+
+                    <!-- Member 4: Ziad Elazb -->
+                    <div class="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group">
+                        <div class="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-white/10 group-hover:border-accent/50">
+                            <img src="https://i.postimg.cc/QdBzqzP3/img-1-1765045528625.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Ziad Elazb</h4>
+                            <p class="text-xs text-slate-500">App Developer</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member 5: Abdullah Basiouny -->
+                    <div class="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group">
+                        <div class="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-white/10 group-hover:border-accent/50">
+                            <img src="https://i.postimg.cc/FsNC2RB8/IMG-20251206-WA0017.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Abdullah Basiouny</h4>
+                            <p class="text-xs text-slate-500">Circuit Design</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member 6: Mahmoud Khalaf Ibrahim -->
+                    <div class="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group">
+                        <div class="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-white/10 group-hover:border-accent/50">
+                            <img src="https://i.postimg.cc/qvDrLRTZ/IMG-20251206-WA0020.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Mahmoud Khalaf</h4>
+                            <p class="text-xs text-slate-500">Power Systems</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member 7: Moustafa Siam -->
+                    <div class="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group">
+                        <div class="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-white/10 group-hover:border-accent/50">
+                            <img src="https://i.postimg.cc/bJHFmCnv/IMG-20251206-WA0016.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Moustafa Siam</h4>
+                            <p class="text-xs text-slate-500">Control Systems</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Member 8: Abdelrahman Nour -->
+                    <div class="glass-card p-4 rounded-xl flex flex-col items-center text-center gap-2 group">
+                        <div class="w-16 h-16 rounded-full bg-slate-800 overflow-hidden border border-white/10 group-hover:border-accent/50">
+                            <img src="https://i.postimg.cc/DfXK285b/IMG-20251206-WA0018.jpg" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Abdelrahman Nour</h4>
+                            <p class="text-xs text-slate-500">IoT Engineer</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="gallery" class="bg-black py-12 border-t border-white/10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full overflow-hidden bg-white p-0.5">
+                        <!-- Institute LOGO -->
+                        <img src="https://i.postimg.cc/ph7hSjh7/images-(68).jpg" alt="Logo" class="w-full h-full object-contain rounded-full">
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">H.I.E.T Electronics</h4>
+                        <p class="text-xs text-slate-500">Excellence in Engineering</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6 text-sm text-slate-400">
+                    <a href="#" class="hover:text-accent transition-colors">Docs</a>
+                    <a href="#" class="hover:text-accent transition-colors">Github</a>
+                    <a href="#" class="hover:text-accent transition-colors">Contact</a>
+                </div>
+
+                <p class="text-xs text-slate-600">© 2025 Smart City Project. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#home" id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center shadow-lg translate-y-20 transition-all duration-300 hover:scale-110 hover:shadow-accent/50 z-40">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <!-- Application Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Navigation & Scroll Effects
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('backToTop');
+            const progressBar = document.getElementById("progress-bar");
+
+            window.addEventListener('scroll', () => {
+                // Navbar glass effect
+                if (window.scrollY > 50) {
+                    navbar.classList.add('glass', 'shadow-lg');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-2');
+                    if (backToTop) backToTop.classList.remove('translate-y-20');
+                } else {
+                    navbar.classList.remove('glass', 'shadow-lg');
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2');
+                    if (backToTop) backToTop.classList.add('translate-y-20');
+                }
+
+                // Progress Bar
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (scrollTop / scrollHeight) * 100;
+                if (progressBar) progressBar.style.width = scrolled + "%";
+                
+                // Trigger Count animation
+                startCounting();
+            });
+
+            // 2. Reveal Animation
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 100;
+                revealElements.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', revealOnScroll);
+            revealOnScroll(); // Trigger once on load
+
+            // 3. Tab System (Corrected)
+            window.openTab = function(evt, tabName) {
+                // Hide all tabs by adding 'hidden' class
+                const contents = document.querySelectorAll('.tab-content');
+                contents.forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // Remove active styling from all buttons
+                const buttons = document.querySelectorAll('.tab-btn');
+                buttons.forEach(btn => {
+                    btn.classList.remove('bg-white/10', 'text-white');
+                    btn.classList.add('text-slate-400', 'hover:text-white');
+                });
+                
+                // Show current tab by removing 'hidden'
+                const activeTab = document.getElementById(tabName);
+                if (activeTab) {
+                    activeTab.classList.remove('hidden');
+                }
+                
+                // Add active styling to clicked button
+                evt.currentTarget.classList.remove('text-slate-400', 'hover:text-white');
+                evt.currentTarget.classList.add('bg-white/10', 'text-white');
+            }
+
+            // 4. Counter Animation
+            const counters = document.querySelectorAll('.counter');
+            let hasCounted = false;
+
+            const startCounting = () => {
+                const section = document.getElementById('stats');
+                if (!section) return;
+                
+                const sectionPos = section.getBoundingClientRect().top;
+                const screenPos = window.innerHeight;
+
+                if (sectionPos < screenPos && !hasCounted) {
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const increment = target / 50;
+                        
+                        const updateCount = () => {
+                            const c = +counter.innerText;
+                            if (c < target) {
+                                counter.innerText = Math.ceil(c + increment);
+                                setTimeout(updateCount, 30);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCount();
+                    });
+                    hasCounted = true;
+                }
+            };
+        });
+    </script>
+</body>
+</html>
