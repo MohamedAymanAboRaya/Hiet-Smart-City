@@ -320,13 +320,13 @@
 
                 <!-- Processing Content -->
                 <div id="processing" class="tab-content hidden grid md:grid-cols-2 gap-10 items-center">
-                    <div class="order-2 md:order-1 glass-card p-6 rounded-2xl border border-dashed border-slate-700 flex items-center justify-center h-full bg-black/20">
-                        <i class="fa-solid fa-microchip text-8xl text-accent/20"></i>
+                    <div class="order-2 md:order-1 glass-card rounded-2xl border border-dashed border-slate-700 flex items-center justify-center h-full bg-black/20 overflow-hidden">
+                        <img src="https://static.cytron.io/image/catalog/products/V-NODEMCU-ESP32/v-nodemcu-esp32-c.jpg" alt="ESP32" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
                     </div>
                     <div class="space-y-6 order-1 md:order-2">
                         <h3 class="text-2xl font-bold text-white">The Brain: ESP32</h3>
                         <p class="text-slate-400 leading-relaxed">
-                            Data collected from sensors is processed instantly. The ESP32 microcontroller uses logic gates to determine actions—like switching a red light to green or sending a "Bin Full" alert to the cloud dashboard via Wi-Fi.
+                            Data collected from sensors is processed instantly. The microcontroller uses logic gates to determine actions—like switching a red light to green or sending a "Bin Full" alert to the cloud dashboard via Wi-Fi.
                         </p>
                         <ul class="space-y-3">
                             <li class="flex items-center gap-3 text-sm text-slate-300">
@@ -365,8 +365,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="glass-card p-6 rounded-2xl border border-dashed border-slate-700 flex items-center justify-center h-full bg-black/20">
-                        <i class="fa-solid fa-city text-8xl text-slate-800"></i>
+                    <div class="glass-card rounded-2xl border border-dashed border-slate-700 flex items-center justify-center h-full bg-black/20 overflow-hidden">
+                        <img src="https://i.postimg.cc/J7FZJKF4/image.png" alt="Actuation Diagram" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
                     </div>
                 </div>
             </div>
@@ -382,223 +382,236 @@
                 <p class="text-slate-400 mt-2">Detailed view of our key subsystems and wiring diagrams.</p>
             </div>
 
-            <!-- Grid: 4 Columns on Large Screens -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- Smart Parking Card -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal group flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
+                <div class="glass-card rounded-2xl overflow-hidden reveal group">
+                    <div class="h-56 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent z-10"></div>
                         <img src="https://i.postimg.cc/L8hDSrLS/Screenshot-from-2025-12-17-01-08-24.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Smart Parking Circuit">
                     </div>
-                    <div class="p-6 relative z-20 -mt-12 flex-grow flex flex-col">
+                    <div class="p-6 relative z-20 -mt-12">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-bold text-white">Smart Parking</h3>
+                            <h3 class="text-xl font-bold text-white">Smart Parking</h3>
                             <div class="flex items-center gap-2">
-                                <a href="https://smart-parking-dashboard-three.vercel.app/" target="_blank" class="text-[9px] font-bold uppercase tracking-wider text-accent border border-accent/30 px-1.5 py-0.5 rounded-full hover:bg-accent/10 transition-colors flex items-center gap-1">
-                                    LIVE
+                                <a href="https://smart-parking-dashboard-three.vercel.app/" target="_blank" class="text-[10px] font-bold uppercase tracking-wider text-accent border border-accent/30 px-2 py-0.5 rounded-full hover:bg-accent/10 transition-colors flex items-center gap-1">
+                                    <i class="fa-solid fa-satellite-dish text-[8px]"></i> LIVE
                                 </a>
                                 <a href="https://github.com/MohamedAymanAboRaya/Smart-Parking-Dashboard" target="_blank" class="text-slate-400 hover:text-white transition-colors" title="View Code">
                                     <i class="fa-brands fa-github text-lg"></i>
                                 </a>
+                                <span class="bg-accent/10 text-accent text-[10px] font-bold px-2 py-1 rounded border border-accent/20">IoT</span>
                             </div>
                         </div>
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            IR sensors detect slot availability. Data is sent to cloud via ESP32.
+                            IR sensors detect slot availability. Data is sent to the cloud via ESP32.
                         </p>
-                        <div class="mt-auto space-y-3">
+                        <div class="space-y-3">
                             <div class="flex flex-wrap gap-1">
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">ESP32</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">IR</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Servo</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">ESP32</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">IR Sensors</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Servo</span>
                             </div>
+                            <!-- UPDATED Credits Layout for Smart Parking -->
                             <div class="pt-3 border-t border-white/10 flex justify-between items-center">
-                                <div><p class="text-[8px] text-slate-500 uppercase font-bold">Lead & Web</p><p class="text-[10px] text-white font-bold">Mohamed Abo Raya</p></div>
-                                <div class="text-right"><p class="text-[8px] text-slate-500 uppercase font-bold">Wiring</p><p class="text-[10px] text-white font-bold">Ziad Elazb</p></div>
+                                <div>
+                                    <p class="text-[9px] text-slate-500 uppercase font-bold">Lead & Web Dev</p>
+                                    <p class="text-xs text-white font-bold">Mohamed Abo Raya</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-[9px] text-slate-500 uppercase font-bold">Wiring</p>
+                                    <p class="text-xs text-white font-bold">Ziad Elazb</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Earthquake Alarm Card -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal delay-100 group flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
+                <div class="glass-card rounded-2xl overflow-hidden reveal delay-100 group">
+                    <div class="h-56 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent z-10"></div>
                         <img src="https://i.postimg.cc/1tyNmq2r/image.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Earthquake Alarm Circuit">
                     </div>
-                    <div class="p-6 relative z-20 -mt-12 flex-grow flex flex-col">
+                    <div class="p-6 relative z-20 -mt-12">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-bold text-white">Earthquake Sensor</h3>
-                            <span class="bg-red-500/10 text-red-400 text-[9px] font-bold px-2 py-1 rounded border border-red-500/20">Safety</span>
+                            <h3 class="text-xl font-bold text-white">Earthquake Sensor</h3>
+                            <span class="bg-red-500/10 text-red-400 text-[10px] font-bold px-2 py-1 rounded border border-red-500/20">Safety</span>
                         </div>
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            Pendulum circuit triggers alarm during ground vibrations.
+                            Suspended pendulum triggers circuit completion during ground vibrations.
                         </p>
-                        <div class="mt-auto space-y-3">
+                        <div class="space-y-3">
                             <div class="flex flex-wrap gap-1">
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Buzzer</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">9V Bat</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Buzzer</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">9V Battery</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Pendulum</span>
                             </div>
                             <div class="pt-3 border-t border-white/10">
-                                <div><p class="text-[8px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-[10px] text-white font-bold">Mahmoud Saad</p></div>
+                                <div><p class="text-[9px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-xs text-white font-bold">Mahmoud Saad</p></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Water Level Card -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal delay-200 group flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
+                <div class="glass-card rounded-2xl overflow-hidden reveal delay-200 group">
+                    <div class="h-56 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent z-10"></div>
                         <img src="https://i.postimg.cc/d3r1GQbs/image.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Water Level Circuit">
                     </div>
-                    <div class="p-6 relative z-20 -mt-12 flex-grow flex flex-col">
+                    <div class="p-6 relative z-20 -mt-12">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-bold text-white">Water Level</h3>
-                            <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-2 py-1 rounded border border-blue-500/20">Utility</span>
+                            <h3 class="text-xl font-bold text-white">Water Level</h3>
+                            <span class="bg-blue-500/10 text-blue-400 text-[10px] font-bold px-2 py-1 rounded border border-blue-500/20">Utility</span>
                         </div>
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            Conductivity probes trigger alert at specific tank levels.
+                            Uses water conductivity to close circuit loops at specific tank levels via metal probes.
                         </p>
-                        <div class="mt-auto space-y-3">
+                        <div class="space-y-3">
                             <div class="flex flex-wrap gap-1">
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Probes</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">LED/Buzz</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Probes</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">5V/9V Battery</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">LED/Buzzer</span>
                             </div>
                             <div class="pt-3 border-t border-white/10">
-                                <div><p class="text-[8px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-[10px] text-white font-bold">Mahmoud Khalaf</p></div>
+                                <div><p class="text-[9px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-xs text-white font-bold">Mahmoud Khalaf</p></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Gas Sensor Card -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal delay-300 group flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
+                <div class="glass-card rounded-2xl overflow-hidden reveal delay-300 group">
+                    <div class="h-56 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent z-10"></div>
                         <img src="https://i.postimg.cc/Sx8rjc14/image.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Gas Sensor Circuit">
                     </div>
-                    <div class="p-6 relative z-20 -mt-12 flex-grow flex flex-col">
+                    <div class="p-6 relative z-20 -mt-12">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-bold text-white">Gas Detection</h3>
-                            <span class="bg-orange-500/10 text-orange-400 text-[9px] font-bold px-2 py-1 rounded border border-orange-500/20">Safety</span>
+                            <h3 class="text-xl font-bold text-white">Gas Detection</h3>
+                            <span class="bg-orange-500/10 text-orange-400 text-[10px] font-bold px-2 py-1 rounded border border-orange-500/20">Safety</span>
                         </div>
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            MQ-5 detects LPG. PNP transistor switches warning LED.
+                            MQ-5 sensor detects LPG. Digital output triggers a PNP transistor switch to activate the warning LED.
                         </p>
-                        <div class="mt-auto space-y-3">
+                        <div class="space-y-3">
                             <div class="flex flex-wrap gap-1">
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">MQ-5</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">PNP</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">MQ-5</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">PNP Trans.</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Red LED</span>
                             </div>
                             <div class="pt-3 border-t border-white/10">
-                                <div><p class="text-[8px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-[10px] text-white font-bold">Awad Ali Shehata</p></div>
+                                <div><p class="text-[9px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-xs text-white font-bold">Awad Ali Shehata</p></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Laser Security Card -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal delay-200 group flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
+                <div class="glass-card rounded-2xl overflow-hidden reveal delay-200 group">
+                    <div class="h-56 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent z-10"></div>
                         <img src="https://i.postimg.cc/NMykXVQM/image.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Laser Security Circuit">
                     </div>
-                    <div class="p-6 relative z-20 -mt-12 flex-grow flex flex-col">
+                    <div class="p-6 relative z-20 -mt-12">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-bold text-white">Laser Security</h3>
-                            <span class="bg-red-500/10 text-red-400 text-[9px] font-bold px-2 py-1 rounded border border-red-500/20">Security</span>
+                            <h3 class="text-xl font-bold text-white">Laser Security</h3>
+                            <span class="bg-red-500/10 text-red-400 text-[10px] font-bold px-2 py-1 rounded border border-red-500/20">Security</span>
                         </div>
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            Beam interruption raises LDR resistance, triggering alarm.
+                            When the laser beam is interrupted, LDR resistance increases, triggering the BC547 transistor to activate the buzzer.
                         </p>
-                        <div class="mt-auto space-y-3">
+                        <div class="space-y-3">
                             <div class="flex flex-wrap gap-1">
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Laser</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">LDR</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">BC547</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Laser</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">LDR</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">BC547</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Buzzer</span>
                             </div>
                             <div class="pt-3 border-t border-white/10">
-                                <div><p class="text-[8px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-[10px] text-white font-bold">Abdelrahman Nour</p></div>
+                                <div><p class="text-[9px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-xs text-white font-bold">Abdelrahman Nour</p></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Door Alarm Card -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal delay-300 group flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
+                <div class="glass-card rounded-2xl overflow-hidden reveal delay-300 group">
+                    <div class="h-56 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent z-10"></div>
                         <img src="https://i.postimg.cc/0jk5Fgrv/image.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Door Alarm Circuit">
                     </div>
-                    <div class="p-6 relative z-20 -mt-12 flex-grow flex flex-col">
+                    <div class="p-6 relative z-20 -mt-12">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-bold text-white">Door Alarm</h3>
-                            <span class="bg-red-500/10 text-red-400 text-[9px] font-bold px-2 py-1 rounded border border-red-500/20">Security</span>
+                            <h3 class="text-xl font-bold text-white">Door Alarm System</h3>
+                            <span class="bg-red-500/10 text-red-400 text-[10px] font-bold px-2 py-1 rounded border border-red-500/20">Security</span>
                         </div>
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            IR beam interruption detects door opening or motion.
+                            Alerts the user when a door is opened or motion is detected via IR beam interruption.
                         </p>
-                        <div class="mt-auto space-y-3">
+                        <div class="space-y-3">
                             <div class="flex flex-wrap gap-1">
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">IR</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Buzzer</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">IR Sensor</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Buzzer</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">9V Battery</span>
                             </div>
                             <div class="pt-3 border-t border-white/10">
-                                <div><p class="text-[8px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-[10px] text-white font-bold">Abdullah Basiouny</p></div>
+                                <div><p class="text-[9px] text-slate-500 uppercase font-bold">System Lead</p><p class="text-xs text-white font-bold">Abdullah Basiouny</p></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Power Supply Card -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal delay-200 group flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
+                <div class="glass-card rounded-2xl overflow-hidden reveal delay-200 group">
+                    <div class="h-56 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent z-10"></div>
                         <img src="https://i.postimg.cc/WbMLrY3L/image.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Power Supply Circuit">
                     </div>
-                    <div class="p-6 relative z-20 -mt-12 flex-grow flex flex-col">
+                    <div class="p-6 relative z-20 -mt-12">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-bold text-white">Power Supply</h3>
-                            <span class="bg-green-500/10 text-green-400 text-[9px] font-bold px-2 py-1 rounded border border-green-500/20">Power</span>
+                            <h3 class="text-xl font-bold text-white">Power Supply Unit</h3>
+                            <span class="bg-green-500/10 text-green-400 text-[10px] font-bold px-2 py-1 rounded border border-green-500/20">Power</span>
                         </div>
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            Stable 5V, 9V, 12V outputs for all system components.
+                            Provides stable 5V, 9V, and 12V outputs for alarms, and motors. Essential for powering the entire Smart City.
                         </p>
-                        <div class="mt-auto space-y-3">
+                        <div class="space-y-3">
                             <div class="flex flex-wrap gap-1">
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Regulators</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Rectifiers</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Transformer</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Rectifiers</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Regulators</span>
                             </div>
-                            <div class="pt-3 border-t border-white/10">
-                                <div><p class="text-[8px] text-slate-500 uppercase font-bold">Design & Assembly</p><p class="text-[10px] text-white font-bold">Ragb, Sobhy & Khalaf</p></div>
+                            <div class="pt-3 border-t border-white/10 flex justify-between items-center">
+                                <div><p class="text-[9px] text-slate-500 uppercase font-bold">Design & Assembly</p><p class="text-xs text-white font-bold">Ragb, Sobhy & Khalaf</p></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Automatic Pump Card -->
-                <div class="glass-card rounded-2xl overflow-hidden reveal delay-300 group flex flex-col">
-                    <div class="h-48 overflow-hidden relative">
+                <div class="glass-card rounded-2xl overflow-hidden reveal delay-300 group">
+                    <div class="h-56 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent z-10"></div>
                         <img src="https://i.postimg.cc/gJR455Q7/image.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Auto Pump Circuit">
                     </div>
-                    <div class="p-6 relative z-20 -mt-12 flex-grow flex flex-col">
+                    <div class="p-6 relative z-20 -mt-12">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-bold text-white">Auto Pump</h3>
-                            <span class="bg-blue-500/10 text-blue-400 text-[9px] font-bold px-2 py-1 rounded border border-blue-500/20">Auto</span>
+                            <h3 class="text-xl font-bold text-white">Auto Water Pump</h3>
+                            <span class="bg-blue-500/10 text-blue-400 text-[10px] font-bold px-2 py-1 rounded border border-blue-500/20">Automation</span>
                         </div>
                         <p class="text-slate-400 text-xs mb-4 leading-relaxed">
-                            Hands-free dispensing via IR sensor and transistor amplification.
+                            IR sensor detects presence to trigger pump via transistor amplification. Ideal for hands-free dispensing.
                         </p>
-                        <div class="mt-auto space-y-3">
+                        <div class="space-y-3">
                             <div class="flex flex-wrap gap-1">
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">IR</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">BC547</span>
-                                <span class="text-[9px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Pump</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">IR + Photodiode</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">2x BC547</span>
+                                <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-1 rounded">Mini Pump</span>
                             </div>
                             <div class="pt-3 border-t border-white/10">
-                                <div><p class="text-[8px] text-slate-500 uppercase font-bold">System Leads</p><p class="text-[10px] text-white font-bold">Sobhy, Ragb, Khalaf</p></div>
+                                <div><p class="text-[9px] text-slate-500 uppercase font-bold">System Leads</p><p class="text-xs text-white font-bold">Sobhy, Ragb, Khalaf</p></div>
                             </div>
                         </div>
                     </div>
@@ -739,7 +752,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-white text-sm group-hover:text-accent transition-colors">Moustafa Siam</h4>
-                            <p class="text-xs text-slate-500">Control Systems</p>
+                            <p class="text-xs text-slate-500">Led & Wiring</p>
                         </div>
                     </div>
                     
